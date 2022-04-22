@@ -2,11 +2,23 @@ pt-BR:
   activerecord:
     models:
       event: "Evento"
+      user: 'Usuário'
 
     attributes:
+      default: &default
+        created_at: 'Criado em'
+        updated_at: 'Atualizado em'
+
       event:
+        <<: *default
         title: "Título"
         description: 'Descrição'
         starts_at: "Data de início"
         ends_at: "Data de fim"
+      
+      user:
+        <<: *default
+        email: 'Email'
+        password: 'Senha'
+        password_confirmation: 'Senha (confirmação)'
         

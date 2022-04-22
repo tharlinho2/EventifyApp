@@ -1,0 +1,107 @@
+:root {
+    --color-gray-darker: #262626;
+    --color-gray-dark: #999;
+    --color-gray: #aaa;
+    --color-gray-light: #ccc;
+    --color-gray-lighter: #dbdbdb;
+    --color-white-bis: #fafafa;
+    --color-blue: #3897f0;
+}
+
+/* CSS Authentication */
+
+body {
+    background-color: var(--color-white-bis);
+    font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--color-gray-darker);
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+}
+
+html, body {
+    height: 100%;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.hero {
+    background-color: white;
+    border: 1px solid var(--color-gray-lighter);
+    border-radius: 3px;
+    padding: 2rem;
+    width: 400px;
+}
+
+.hero h2 {
+    color: var(--color-gray-dark);
+    font-weight: normal;
+    text-align: center;
+}
+
+.hero .help-links {
+    margin-top: 2rem;
+    border-top: 1px solid var(--color-gray-lighter);
+    padding-top: 1rem;
+    text-align: center;
+}
+
+.hero .help-links a {
+    display: block;
+    margin-top: 0.25rem;
+    text-decoration: none;
+    color: var(--color-blue);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* CSS Form */
+
+form .field {
+    margin-top: 1rem;
+}
+
+form .field input {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--color-white-bis);
+    border: 1px solid var(--color-gray-lighter);
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+form .field input:focus {
+    outline: 0;
+    border: 1px solid var(--color-gray-darker);
+}
+
+form .actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+form .actions input[type='submit'] {
+    font-size: 14px;
+    background-color: var(--color-blue);
+    color: white;
+    width: 100%;
+    border-radius: 4px;
+    border: none;
+    padding: 0.5rem;
+}
+
+form.new-post,
+form.edit-profile {
+    margin: 1rem auto 0;
+    padding: 1rem;
+    max-width: 500px;
+    border-radius: 3px;
+    background-color: white;
+    border: 1px solid var(--color-gray-lighter);
+}

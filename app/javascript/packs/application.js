@@ -10,5 +10,6 @@ import 'bootstrap/dist/js/bootstrap.bundle'
 
 import '../src/application.css'
 
+
 Rails.start()
 ActiveStorage.start()

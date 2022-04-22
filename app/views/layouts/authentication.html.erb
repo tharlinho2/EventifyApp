@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Autenticação - Eventify</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'authentication' %>
+    <%= javascript_pack_tag 'authentication' %>
+  </head>
+
+  <body>
+    <main>
+      <section class="hero">
+        <%= yield %>
+      </section>
+    </main>
+  </body>
+</html>
