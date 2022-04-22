@@ -1,11 +1,5 @@
 @import "bootstrap";
 
-.teste {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10%;
-}
-
 html, body {
     height: 100%;
 }
