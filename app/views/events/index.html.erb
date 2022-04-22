@@ -9,21 +9,21 @@
 </div>
 
 <% if @events.any? %>
-  <table class="table table-borderless">
-    <thead>
-      <tr>
-        <th>Título</th>
-        <th>Data de início do evento</th>
-        <th>Data de fim do evento</th>
-      </tr>
-    </thead>
+<table class="table table-borderless">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Data de início do evento</th>
+      <th>Data de fim do evento</th>
+    </tr>
+  </thead>
 
-    <tbody>
-      <% @events.each do |event| %>
-        <%= render 'table_row', event: event %>
-      <% end %>
-    </tbody>
-  </table>
+  <tbody>
+    <% @events.each do |event| %>
+      <%= render 'table_row', event: event %>
+    <% end %>
+  </tbody>
+</table>
 <% else %>
-  <p>Nenhum evento cadastrado!</p>
+<p>Nenhum evento cadastrado!</p>
 <% end %>

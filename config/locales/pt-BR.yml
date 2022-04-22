@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      event: "Evento"
+
+    attributes:
+      event:
+        title: "Título"
+        description: 'Descrição'
+        starts_at: "Data de início"
+        ends_at: "Data de fim"
+        
