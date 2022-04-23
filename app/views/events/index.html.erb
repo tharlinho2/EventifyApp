@@ -3,27 +3,27 @@
     <h1 class="display-4">Eventos</h1>
   </div>
 
-  <div class="col-4 mt-4 text-right">
-    <%= link_to "+ Evento", new_event_path, class: 'btn btn-success' %>
+  <div class="col-4 mt-4 text-right button-table">
+    <%= link_to "+ Evento", new_event_path, class: 'btn btn-success hover-button ' %>
   </div>
 </div>
 
 <% if @events.any? %>
-<table class="table table-borderless">
-  <thead>
-    <tr>
-      <th>Título</th>
-      <th>Data de início do evento</th>
-      <th>Data de fim do evento</th>
-    </tr>
-  </thead>
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Data de início do evento</th>
+        <th>Data de fim do evento</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <%= render 'table_row', event: event %>
-    <% end %>
-  </tbody>
-</table>
+    <tbody>
+      <% @events.each do |event| %>
+        <%= render 'table_row', event: event %>
+      <% end %>
+    </tbody>
+  </table>
 <% else %>
-<p>Nenhum evento cadastrado!</p>
+  <p>Nenhum evento cadastrado!</p>
 <% end %>

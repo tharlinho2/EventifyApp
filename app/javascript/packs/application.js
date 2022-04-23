@@ -10,6 +10,7 @@ import 'bootstrap/dist/js/bootstrap.bundle'
 
 import '../src/application.css'
 
+import "./flashMessages.js"
 
 Rails.start()
 ActiveStorage.start()

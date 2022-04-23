@@ -1,5 +1,45 @@
 @import "bootstrap";
+@import "toastify-js/src/toastify.css";
 
-html, body {
+html,
+body {
     height: 100%;
+}
+
+.button-table {
+    display: flex;
+    justify-content: space-evenly;
+    height: 40px;
+}
+
+.form-text {
+    width: 50%;
+}
+
+.form-event {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-event-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.hover-button {
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.hover-button:hover {
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.6);
+}
+
+h1 .form-event {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

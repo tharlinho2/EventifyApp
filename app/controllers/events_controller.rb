@@ -19,25 +19,25 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
-      redirect_to event_url(@event), notice: "Evento criado com sucesso."
+      redirect_to event_url(@event), notice: ["Evento criado com sucesso!!"]
     else
-      flash.now[:alert] = @event.errors.full_messages.to_sentence
+      flash.now[:alert] = @event.errors.full_messages
       render :new
     end
   end
 
   def update
     if @event.update(event_params)
-      redirect_to event_url(@event), notice: "Evento atualizado com sucesso."
+      redirect_to event_url(@event), notice: ["Evento atualizado com sucesso!!"]
     else
-      flash.now[:alert] = @event.errors.full_messages.to_sentence
-      render :edit, status: :unprocessable_entity
+      flash.now[:alert] = @event.errors.full_messages
+      render :edit
     end
   end
 
   def destroy
     @event.destroy
-    redirect_to events_url, notice: "Evento deletado com sucesso."
+    redirect_to events_url, notice: ["Evento deletado com sucesso!!"]
   end
 
   private
