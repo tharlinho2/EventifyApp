@@ -21,7 +21,8 @@ body {
     margin-top: 10%;
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -62,10 +63,19 @@ main {
     font-size: 14px;
 }
 
+.hover-button {
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.hover-button:hover {
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.6);
+}
+
 /* CSS Form */
 
 form .field {
     margin-top: 1rem;
+    margin-right: 25px;
 }
 
 form .field input {

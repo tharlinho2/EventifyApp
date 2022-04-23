@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
   root "events#index"
+
+  devise_for :users, controllers: { registrations: "users/registrations" }
 
   resources :events
 end
