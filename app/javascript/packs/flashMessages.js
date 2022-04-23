@@ -16,16 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
   JSON.parse(document.body.dataset.flashMessages).forEach((flashMessage) => {
     const [type, messages] = flashMessage
 
-    console.log(messages)
+    if (Array.isArray(messages)) {
+      messages.reverse().forEach((sms) => {
+        toastify(sms)
+      })
+    } else {
+      toastify(messages)
+    }
 
-    messages.forEach((message) => {
+    function toastify(sms) {
       Toastify({
-        text: message,
+        text: sms,
         duration: timeDuration[type],
         close: true,
         backgroundColor: backgroundColors[type],
         stopOnFocus: true,
       }).showToast()
-    })
+    }
   })
 })
