@@ -2,7 +2,8 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
 
   def index
-    @events = Event.all
+    user = User.find(current_user.id)
+    @events = user.events
   end
 
   def show
@@ -16,7 +17,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    @event = Event.new(event_params.merge(created_by: current_user))
 
     if @event.save
       redirect_to event_url(@event), notice: ["Evento criado com sucesso!!"]
