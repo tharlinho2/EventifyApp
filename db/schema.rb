@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_24_003658) do
+ActiveRecord::Schema.define(version: 2022_04_25_013532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,12 +18,24 @@ ActiveRecord::Schema.define(version: 2022_04_24_003658) do
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.date "starts_at"
-    t.date "ends_at"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "created_by_id", null: false
     t.index ["created_by_id"], name: "index_events_on_created_by_id"
+  end
+
+  create_table "reminders", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "time_value"
+    t.string "time_unit"
+    t.datetime "reminder_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_reminders_on_event_id"
+    t.index ["user_id"], name: "index_reminders_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,4 +51,6 @@ ActiveRecord::Schema.define(version: 2022_04_24_003658) do
   end
 
   add_foreign_key "events", "users", column: "created_by_id"
+  add_foreign_key "reminders", "events"
+  add_foreign_key "reminders", "users"
 end

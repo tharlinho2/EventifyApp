@@ -1,10 +1,22 @@
 @import "bootstrap";
 @import "toastify-js/src/toastify.css";
 
+:root {
+    --color-gray-darker: #262626;
+    --color-gray-dark: #999;
+    --color-gray: #aaa;
+    --color-gray-light: #ccc;
+    --color-gray-lighter: #dbdbdb;
+    --color-white-bis: #fafafa;
+    --color-blue: #3897f0;
+}
+
 html,
 body {
     height: 100%;
 }
+
+/* CSS FORM */
 
 .button-table {
     display: flex;
@@ -42,4 +54,37 @@ h1 .form-event {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* CSS REMINDERS */
+
+.reminders {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid var(--color-gray-lighter);
+}
+
+form.new-reminder {
+  margin-top: 2rem;
+}
+
+.show-reminder {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.new-reminder {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20;
+  height: auto;
+  border-width: 2px;
+}
+
+.datetime-reminder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

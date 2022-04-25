@@ -1,22 +1,98 @@
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
+<div class="show-reminder">
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+  <div>
+    <p>
+      <strong>Title:</strong>
+      <%= @event.title %>
+    </p>
 
-<p>
-  <strong>Starts at:</strong>
-  <%= @event.starts_at %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @event.description %>
+    </p>
 
-<p>
-  <strong>Ends at:</strong>
-  <%= @event.ends_at %>
-</p>
+    <p>
+      <strong>Starts at:</strong>
+      <%= @event.starts_at %>
+    </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+    <p>
+      <strong>Ends at:</strong>
+      <%= @event.ends_at %>
+    </p>
+
+    <%= link_to 'Edit', edit_event_path(@event) %> |
+    <%= link_to 'Back', events_path %>
+  </div>
+
+  <aside>
+    <section class="reminders" data-post-id="<%= @event.id %>">
+      <% if @event.reminders.any? %>
+
+      <% else %>
+      <div>
+        <p> Nenhum lembrete ainda! </p>
+      </div>
+      <% end %>
+    </section>
+  </aside>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch static backdrop modal
+  </button>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+
+        <div class="new-reminder">
+
+          <%= form_with model: @reminder, local: true, class: "new-reminder" do |form| %>
+
+          <%= form.hidden_field :event_id, value: @event.id %>
+
+          <%= form.number_field :time_value, class: 'form-control mb-4', placeholder: "Value", min: 1, max: 100%>
+
+          <div class="form-check">
+            <%= form.radio_button :time_unit, "MINUTE", class: "form-check-input" %>
+            <%= form.label :time_unit, "Minuto antes", class: "form-check-label" %>
+          </div>
+
+          <div class="form-check">
+            <%= form.radio_button :time_unit, "HOUR", class: "form-check-input" %>
+            <%= form.label :time_unit, "Hora", class: "form-check-label" %>
+          </div>
+
+          <div class="form-check">
+            <%= form.radio_button :time_unit, "DAY", class: "form-check-input" %>
+            <%= form.label :time_unit, "Dia", class: "form-check-label" %>
+          </div>
+
+          <div class="form-check">
+            <%= form.radio_button :time_unit, "WEEK", class: "form-check-input" %>
+            <%= form.label :time_unit, "Semana", class: "form-check-label" %>
+          </div>
+
+          <% if @reminder.reminder_at? %>
+            <div class="datetime-reminder">
+              <p>Lembrar em</p>
+              <p><%= @reminder.reminder_at %></p>
+            </div>
+          <% end %>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary hover-button" data-bs-dismiss="modal">Cancelar</button>
+          <%= form.submit "Criar Lembrete", class: "btn btn-primary hover-button", data: { disable_with: 'Salvando...' } %>
+        </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>

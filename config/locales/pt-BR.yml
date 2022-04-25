@@ -3,6 +3,7 @@ pt-BR:
     models:
       event: "Evento"
       user: 'Usuário'
+      reminder: "Lembrete"
 
     attributes:
       default: &default
@@ -21,4 +22,10 @@ pt-BR:
         email: 'Email'
         password: 'Senha'
         password_confirmation: 'Senha (confirmação)'
+      
+      reminder:
+        <<: *default
+        time_value: "Valor do tempo"
+        time_unit: "Unidade de tempo"
+        reminder_at: "Lembrar em"
         

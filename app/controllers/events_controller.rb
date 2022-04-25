@@ -7,6 +7,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @reminder = Reminder.new
   end
 
   def new

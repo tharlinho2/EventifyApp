@@ -10,4 +10,5 @@ Rails.application.routes.draw do
              }
 
   resources :events
+  resources :reminders, only: %i[ create ]
 end

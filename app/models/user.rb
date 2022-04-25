@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :events, foreign_key: :created_by_id, dependent: :destroy
+  has_many :reminders
 end
