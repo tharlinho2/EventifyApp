@@ -30,6 +30,14 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
+      @event.reminders.each do |reminder|
+        reminder.reminder_at = reminder.calculateDate(
+          reminder.time_value,
+          reminder.time_unit,
+          @event.starts_at
+        )
+        reminder.save
+      end
       redirect_to event_url(@event), notice: ["Evento atualizado com sucesso!!"]
     else
       flash.now[:alert] = @event.errors.full_messages

@@ -8,7 +8,7 @@ class RemindersController < ApplicationController
     event = Event.find(@reminder.event_id)
     event.starts_at
 
-    @reminder.reminder_at = calculateDate(
+    @reminder.reminder_at = @reminder.calculateDate(
       @reminder.time_value,
       @reminder.time_unit,
       event.starts_at

@@ -63,6 +63,12 @@ h1 .form-event {
   padding: 1rem;
   background-color: white;
   border: 1px solid var(--color-gray-lighter);
+  border-radius: 5px;
+}
+
+.teste {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 form.new-reminder {
@@ -71,7 +77,7 @@ form.new-reminder {
 
 .show-reminder {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .new-reminder {
@@ -87,4 +93,12 @@ form.new-reminder {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.button-new-reminder {
+  display: flex;
+  height: 25px;
+  width: 25px;
+  padding-left: 80%;
+  margin-bottom: 5px;
 }

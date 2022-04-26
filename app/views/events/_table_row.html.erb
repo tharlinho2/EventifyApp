@@ -4,8 +4,8 @@
         <%= event.title %>
     </td>
 
-    <td><%= I18n.l event.starts_at %></td>
-    <td><%= I18n.l event.ends_at %></td>
+    <td><%= l event.starts_at, format: :short2 %></td>
+    <td><%= l event.ends_at, format: :short2 %></td>
 
     <td class="text-right" style="padding-right: 0px;">
         <%= link_to 'Ver', event, class: 'btn btn-secondary btn-sm hover-button ' %>
