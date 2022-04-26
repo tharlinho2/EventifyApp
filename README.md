@@ -1,24 +1,43 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Sistema Eventify
 
-Things you may want to cover:
+Aplicação para cadastrar Eventos onde o mesmo será possível adicionar Lembretes a cada Evento, "lembrando que cada Evento terá no máximo 5 lembretes".
 
-* Ruby version
+A aplicação conta com a autenticação obrigatória de "Email" e "Senha" para acessar os eventos daquele usuário específico, e com isso os lembretes serão enviados
+para o Email do usuário.
 
-* System dependencies
+# Instalando Sistema
 
-* Configuration
+1. Instalar o Docker
 
-* Database creation
+2. Para executar o docker, primeiro precisa fazer a imagem do sistema localmente. 
+```
+docker-compose build
+```
 
-* Database initialization
+3. Crie o arquivo `.env.development` na pasta raíz do projeto e dentro dele adicione as seguintes chaves:
 
-* How to run the test suite
+```
+DATABASE_URL_HOST=db
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=postgres
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+4. Crie o banco de dados, migração: 
+```
+docker-compose run --rm app rails db:create
+```
+```
+docker-compose run --rm app rails db:migrate
+```
 
-* Deployment instructions
+5. Execute o projeto com o comando 
+```
+docker-compose up -d
+```
 
-* ...
+6. Para parar os containers execute o comando na pasta do projeto 
+```
+docker-compose down
+```

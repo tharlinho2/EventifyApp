@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :events, foreign_key: :created_by_id, dependent: :destroy
   has_many :reminders
+
+  enum status: [:common, :admin]
 end

@@ -1,3 +1,5 @@
+require "sidekiq/web"
+
 Rails.application.routes.draw do
   root "events#index"
 
@@ -11,4 +13,8 @@ Rails.application.routes.draw do
 
   resources :events
   resources :reminders, only: %i[ create ]
+
+  authenticate :user, ->(user) { user.admin? } do
+    mount Sidekiq::Web => "/sidekiq"
+  end
 end
