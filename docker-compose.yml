@@ -43,6 +43,16 @@ services:
       - "127.0.0.1:6379:6379"
     logging:
       driver: none
+  sidekiq:
+    image: eventifyapp_app
+    depends_on:
+      - app
+      - db
+      - redis
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    env_file: .env.development
+    volumes:
+      - .:/usr/src/EventifyApp
 volumes:
   postgresql:
   redis:

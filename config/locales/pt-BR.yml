@@ -35,5 +35,5 @@ pt-BR:
         <<: *default
         time_value: "Valor do tempo"
         time_unit: "Unidade de tempo"
-        reminder_at: "Lembrar em"
+        reminder_at: "Data de Lembrete"
         

@@ -1,9 +1,9 @@
 ---
-:concurrency: 5
+:concurrency: <%= ENV['SIDEKIQ_WORKERS'] %>
 staging:
-  :concurrency: 10
+  :concurrency: <%= ENV['SIDEKIQ_WORKERS'] %>
 production:
-  :concurrency: 20
+  :concurrency: <%= ENV['SIDEKIQ_WORKERS'] %>
 :queues:
  - critical
  - default

@@ -5,5 +5,5 @@ RUN npm install -g yarn
 RUN mkdir /usr/src/EventifyApp
 WORKDIR /usr/src/EventifyApp
 ADD . /usr/src/EventifyApp
-RUN gem install bundler -v 2.3.11
+RUN gem install bundler -v 2.1.4
 RUN bundle install

@@ -20,6 +20,18 @@ gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'date_validator'
+
+gem 'rails-i18n'
+
+gem "devise", "~> 4.8"
+gem "devise-i18n", "~> 1.10"
+
+gem "letter_opener", "~> 1.8"
+
+gem "sidekiq", "~> 6.4"
+
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -52,12 +64,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem 'rails-i18n'
-
-gem "devise", "~> 4.8"
-gem "devise-i18n", "~> 1.10"
-
-gem "letter_opener", "~> 1.8"
-
-gem "sidekiq", "~> 6.4"
