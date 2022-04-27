@@ -43,11 +43,11 @@ body {
 }
 
 .hover-button {
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 .hover-button:hover {
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.6);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 1);
 }
 
 h1 .form-event {
@@ -66,7 +66,7 @@ h1 .form-event {
   border-radius: 5px;
 }
 
-.teste {
+.reminder-header {
   display: flex;
   justify-content: space-evenly;
 }
@@ -101,4 +101,20 @@ form.new-reminder {
   width: 25px;
   padding-left: 80%;
   margin-bottom: 5px;
+}
+
+.show-event {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.links-event {
+  display: flex;
+  margin-left: 15%;
+}
+
+.image-delete {
+  height: 25px;
+  width: 25px;
 }

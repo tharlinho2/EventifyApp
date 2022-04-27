@@ -1,7 +1,7 @@
 <tr class='border-top'>
 
     <td>
-        <%= event.title %>
+        <%= truncate(event.title, length: 15) %>
     </td>
 
     <td><%= l event.starts_at, format: :short2 %></td>
@@ -9,7 +9,7 @@
 
     <td class="text-right" style="padding-right: 0px;">
         <%= link_to 'Ver', event, class: 'btn btn-secondary btn-sm hover-button ' %>
-        <%= link_to 'Editar', edit_event_path(event), class: 'btn btn-secondary btn-sm hover-button ' %>
+        <%= link_to 'Editar', edit_event_path(event), class: 'btn btn-primary btn-sm hover-button ' %>
         <%= link_to 'Apagar', event, method: :delete, class: 'btn btn-danger btn-sm hover-button ', data: { confirm: 'Tem certeza?' } %>
     </td>
 </tr>

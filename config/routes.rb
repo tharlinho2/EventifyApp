@@ -12,7 +12,7 @@ Rails.application.routes.draw do
              }
 
   resources :events
-  resources :reminders, only: %i[ create ]
+  resources :reminders, only: %i[ create destroy ]
 
   authenticate :user, ->(user) { user.admin? } do
     mount Sidekiq::Web => "/sidekiq"

@@ -1,66 +1,71 @@
 <div class="show-reminder">
-
-  <div>
+  <div class="show-event">
     <p>
-      <strong>Title:</strong>
-      <%= @event.title %>
+        <strong>Título:</strong>
+        <%= @event.title %>
     </p>
-
     <p>
-      <strong>Description:</strong>
-      <%= @event.description %>
-    </p>
+        <strong>Descrição:</strong>
+        <%= truncate(@event.description, length: 40 ) %>
 
+        <%= link_to 'Ler tudo', "#", { 
+        'class' => 'text-decoration-none fst-italic', 
+        'data-bs-toggle' => "modal", 
+        "data-bs-target" => "#modalDescription" } %>
+    </p>
     <p>
-      <strong>Starts at:</strong>
-      <%= @event.starts_at %>
+        <strong>Início:</strong>
+        <%= l @event.starts_at, format: :short2  %>
     </p>
-
     <p>
-      <strong>Ends at:</strong>
-      <%= @event.ends_at %>
+        <strong>Fim:</strong>
+        <%= l @event.ends_at, format: :short2  %>
     </p>
-
-    <%= link_to 'Edit', edit_event_path(@event) %> |
-    <%= link_to 'Back', events_path %>
-  </div>
-
+</div>
+   
   <aside>
-
     <%= link_to "#", { 
-      'data-bs-toggle' => @event.reminders.length == 5 ? "tooltip" : "modal", 
+      'data-bs-toggle' => @event.reminders.length == 5 ? "" : "modal", 
       "data-bs-target" => "#staticBackdrop",
       "title" => "No máximo 5 lembretes"
       } do %>
+
       <div class="button-new-reminder">
         <%= image_tag "lembrete.png" %>
       </div>
     <% end %>
+
     <section class="reminders" data-post-id="<%= @event.id %>">
-      <p class="teste">Lembretes</p>
+      <p class="reminder-header">Lembretes</p>
       
       <% if @event.reminders.any? %>
-      <table class="table table-borderless">
-        <thead>
-          <tr>
-            <th>N°</th>
-            <th>Data de Lembrete</th>
-          </tr>
-        </thead>
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Data de Lembrete</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          <% @event.reminders.each_with_index do |reminder, index| %>
-          <%= render reminder, index: index %>
-          <% end %>
-        </tbody>
-      </table>
+          <tbody>
+            <% @event.reminders.order(reminder_at: :asc).each_with_index do |reminder, index| %>
+              <%= render reminder, index: index %>
+            <% end %>
+          </tbody>
+        </table>
       <% else %>
-      <div>
-        <p> Nenhum lembrete ainda! </p>
-      </div>
+        <div>
+          <p> Nenhum lembrete ainda! </p>
+        </div>
       <% end %>
     </section>
   </aside>
+</div>
+
+
+<div class="links-event">
+    <%= link_to 'Voltar', events_path, class: "btn btn-secondary hover-button" %>
+    <%= link_to 'Editar', edit_event_path(@event), class: "btn btn-primary ms-2 hover-button" %>
 </div>
 
 <!-- Modal -->
@@ -71,6 +76,19 @@
       <div class="modal-body">
         <div class="new-reminder">
           <%= render "reminders/form" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalDescription" data-bs-keyboard="true" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="new-reminder">
+          <p><%= @event.description %></p>
         </div>
       </div>
     </div>

@@ -4,9 +4,15 @@
         <%= index + 1 %>
     </td>
 
-    <td><%= l reminder.reminder_at, format: :short2 %></td>
+    <td>
+        <p class=<%= reminder.reminder_at < Time.now ? "text-decoration-line-through" : ""%>>
+            <%= l reminder.reminder_at, format: :short2 %>
+        </p>
+    </td>
 
-    <td class="text-right" style="padding-right: 0px;">
-       
+    <td class="">
+        <%= link_to reminder, method: :delete, data: { confirm: 'Tem certeza?' } do %>
+        <%= image_tag "delete.png", class: "image-delete" %>
+    <% end %>
     </td>
 </tr>

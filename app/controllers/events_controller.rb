@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_event, only: %i[ edit update destroy ]
+  include ApplicationHelper
 
   def index
     user = User.find(current_user.id)
@@ -7,7 +8,11 @@ class EventsController < ApplicationController
   end
 
   def show
-    @reminder = Reminder.new
+    if set_event.created_by_id == current_user.id
+      @reminder = current_user.reminders.new
+    else
+      redirect_to events_url, alert: ["Não autorizado!"]
+    end
   end
 
   def new
@@ -30,14 +35,7 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      @event.reminders.each do |reminder|
-        reminder.reminder_at = reminder.calculateDate(
-          reminder.time_value,
-          reminder.time_unit,
-          @event.starts_at
-        )
-        reminder.save
-      end
+      updateRemindAt(@event)
       redirect_to event_url(@event), notice: ["Evento atualizado com sucesso!!"]
     else
       flash.now[:alert] = @event.errors.full_messages
