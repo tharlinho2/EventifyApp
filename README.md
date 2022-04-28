@@ -16,15 +16,7 @@ para o Email do usuário.
 docker-compose build
 ```
 
-3. Crie o arquivo `.env.development` na pasta raíz do projeto e dentro dele adicione as seguintes chaves:
-
-```
-DATABASE_URL_HOST=db
-DATABASE_USERNAME=postgres
-DATABASE_PASSWORD=postgres
-```
-
-4. Crie o banco de dados, migração: 
+3. Crie o banco de dados, migração: 
 ```
 docker-compose run --rm app rails db:create
 ```
@@ -32,17 +24,17 @@ docker-compose run --rm app rails db:create
 docker-compose run --rm app rails db:migrate
 ```
 
-5. Execute o projeto com o comando 
+4. Execute o projeto com o comando 
 ```
 docker-compose up -d
 ```
 
-6. Para parar os containers execute o comando na pasta do projeto 
+5. Para parar os containers execute o comando na pasta do projeto 
 ```
 docker-compose down
 ```
 
-7. User o MailCatcher para gerenciar seus Emails
+6. User o MailCatcher para gerenciar seus Emails
 ```
 http://127.0.0.1:1080/
 ```
