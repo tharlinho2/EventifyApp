@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'sidekiq-scheduler'
+
 ruby '2.7.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
@@ -29,7 +31,7 @@ gem "devise-i18n", "~> 1.10"
 
 gem "letter_opener", "~> 1.8"
 
-gem "sidekiq", "~> 6.4"
+gem "sidekiq"
 
 
 # Use Active Storage variant

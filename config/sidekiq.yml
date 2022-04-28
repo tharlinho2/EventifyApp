@@ -5,7 +5,11 @@ staging:
 production:
   :concurrency: <%= ENV['SIDEKIQ_WORKERS'] %>
 :queues:
- - critical
- - default
- - low
- - mailers
+  - critical
+  - default
+  - low
+  - mailers
+:schedule:
+  hello_world:
+    cron: '0 * * * * *' # Runs once per minute
+    class: ReminderJob
