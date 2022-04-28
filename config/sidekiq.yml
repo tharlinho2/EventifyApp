@@ -10,6 +10,6 @@ production:
   - low
   - mailers
 :schedule:
-  hello_world:
+  email_reminder:
     cron: '0 * * * * *' # Runs once per minute
     class: ReminderJob

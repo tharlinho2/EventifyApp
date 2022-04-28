@@ -5,6 +5,7 @@ class Event < ApplicationRecord
                                 message: "deve ser maior que a data atual!" }
 
   validates :ends_at, date: { after: :starts_at, message: "deve ser maior que a Data de início!" }
+  validates :created_by_id, presence: true
 
   belongs_to :created_by, class_name: "User"
 
