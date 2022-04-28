@@ -41,3 +41,8 @@ docker-compose up -d
 ```
 docker-compose down
 ```
+
+7. User o MailCatcher para gerenciar seus Emails
+```
+http://127.0.0.1:1080/
+```
