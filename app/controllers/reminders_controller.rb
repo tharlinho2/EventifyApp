@@ -2,10 +2,6 @@ class RemindersController < ApplicationController
   before_action :set_reminder, only: %i[ destroy ]
   include ApplicationHelper
 
-  def new
-    @event = Event.new
-  end
-
   def create
     @reminder = current_user.reminders.new(reminder_params)
 

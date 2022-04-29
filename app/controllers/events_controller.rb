@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ edit update destroy ]
+  before_action :set_event, only: %i[ edit update destroy show ]
   include ApplicationHelper
 
   def index
@@ -8,10 +8,10 @@ class EventsController < ApplicationController
   end
 
   def show
-    if set_event.created_by_id == current_user.id
+    if @event.created_by_id == current_user.id
       @reminder = current_user.reminders.new
     else
-      redirect_to events_url, alert: ["Não autorizado!"]
+      redirect_to events_url, alert: "Não autorizado!"
     end
   end
 
@@ -26,7 +26,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params.merge(created_by: current_user))
 
     if @event.save
-      redirect_to event_url(@event), notice: ["Evento criado com sucesso!!"]
+      redirect_to event_url(@event), notice: "Evento criado com sucesso!!"
     else
       flash.now[:alert] = @event.errors.full_messages
       render :new
@@ -36,7 +36,7 @@ class EventsController < ApplicationController
   def update
     if @event.update(event_params)
       updateRemindAt(@event)
-      redirect_to event_url(@event), notice: ["Evento atualizado com sucesso!!"]
+      redirect_to event_url(@event), notice: "Evento " + reminder_any?(@event) + " com sucesso!!"
     else
       flash.now[:alert] = @event.errors.full_messages
       render :edit
@@ -45,7 +45,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to events_url, notice: ["Evento deletado com sucesso!!"]
+    redirect_to events_url, notice: "Evento deletado com sucesso!!"
   end
 
   private
@@ -56,5 +56,16 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:title, :description, :starts_at, :ends_at)
+  end
+
+  def reminder_any?(event)
+    case
+    when event.reminders.empty? == true
+      return "atualizado"
+    when event.reminders.length < 2
+      return "e lembrete atualizado"
+    when event.reminders.length > 1
+      return "e lembretes atualizados"
+    end
   end
 end

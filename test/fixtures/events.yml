@@ -1,0 +1,7 @@
+event_001:
+  id: 1
+  title: teste
+  description: teste
+  starts_at: <%= Time.now + 1.hour %>
+  ends_at: <%= Time.now + 1.day %>
+  created_by: 1

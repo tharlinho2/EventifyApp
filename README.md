@@ -29,12 +29,17 @@ docker-compose run --rm app rails db:migrate
 docker-compose up -d
 ```
 
-5. Para parar os containers execute o comando na pasta do projeto 
+5. Para parar os containers execute o comando na pasta do projeto
 ```
 docker-compose down
 ```
 
-6. User o MailCatcher para gerenciar seus Emails
+6. Para testar Models e Controllers execute o comando na pasta do projeto
+```
+docker-compose run --rm app rake test
+```
+
+7. User o MailCatcher para gerenciar seus Emails
 ```
 http://127.0.0.1:1080/
 ```

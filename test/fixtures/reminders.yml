@@ -1,0 +1,7 @@
+reminder_001:
+  id: 1
+  event_id: 1
+  time_value: 50
+  time_unit: "MINUTE"
+  reminder_at: <%= Time.now - 50.minute %>
+  user_id: 1
