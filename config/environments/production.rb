@@ -6,15 +6,12 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
-  ActionMailer::Base.smtp_settings = {
-    :port => ENV["MAILGUN_SMTP_PORT"],
-    :address => ENV["MAILGUN_SMTP_SERVER"],
-    :user_name => ENV["MAILGUN_SMTP_LOGIN"],
-    :password => ENV["MAILGUN_SMTP_PASSWORD"],
-    :domain => "eventify-th-app.heroku.com",
-    :authentication => :plain,
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: ENV["MAILGUN_API_KEY"],
+    domain: "eventify-th-app.heroku.com",
+  # api_host: 'api.eu.mailgun.net'  # Uncomment this line for EU region domains
   }
-  ActionMailer::Base.delivery_method = :smtp
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
