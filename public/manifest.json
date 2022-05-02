@@ -1,6 +1,6 @@
 {
-    "short_name": "PWA",
-    "name": "Progressive Web App",
+    "short_name": "Eventify",
+    "name": "Eventify App",
     "icons": [{
             "src": "/icons/android-icon-192x192.png",
             "sizes": "192x192",
