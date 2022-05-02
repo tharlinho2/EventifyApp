@@ -43,17 +43,62 @@ body {
 }
 
 .hover-button {
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 .hover-button:hover {
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 1);
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 1);
 }
 
 h1 .form-event {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-new-event {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 2560px) {
+  .btn-new-event {
+    padding-right: 23%;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .btn-new-event {
+    padding-right: 15%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .btn-new-event {
+    padding-right: 6%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .btn-new-event {
+    padding-right: 10%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .btn-new-event {
+    padding-right: 12%;
+  }
+
+  html {
+    font-size: 50%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .btn-new-event {
+    padding-right: 9%;
+  }
 }
 
 /* CSS REMINDERS */
