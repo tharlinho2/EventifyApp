@@ -31,6 +31,8 @@ gem "sidekiq-scheduler"
 
 gem "sidekiq"
 
+gem 'mailgun-ruby', '~>1.2.5'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
