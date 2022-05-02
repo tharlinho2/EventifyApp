@@ -1,0 +1,204 @@
+/*!
+ * Toastify js 1.11.2
+ * https://github.com/apvarun/toastify-js
+ * @license MIT licensed
+ *
+ * Copyright (C) 2018 Varun A P
+ */
+
+.toastify {
+    padding: 12px 20px;
+    color: #ffffff;
+    display: inline-block;
+    box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
+    background: linear-gradient(135deg, #73a5ff, #5477f5);
+    position: fixed;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    max-width: calc(50% - 20px);
+    z-index: 2147483647;
+}
+
+.toastify.on {
+    opacity: 1;
+}
+
+.toast-close {
+    opacity: 0.4;
+    padding: 0 5px;
+}
+
+.toastify-right {
+    right: 15px;
+}
+
+.toastify-left {
+    left: 15px;
+}
+
+.toastify-top {
+    top: -150px;
+}
+
+.toastify-bottom {
+    bottom: -150px;
+}
+
+.toastify-rounded {
+    border-radius: 25px;
+}
+
+.toastify-avatar {
+    width: 1.5em;
+    height: 1.5em;
+    margin: -7px 5px;
+    border-radius: 2px;
+}
+
+.toastify-center {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    max-width: -webkit-fit-content;
+    max-width: fit-content;
+    max-width: -moz-fit-content;
+}
+
+@media only screen and (max-width: 360px) {
+    .toastify-right, .toastify-left {
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        max-width: -webkit-fit-content;
+        max-width: -moz-fit-content;
+        max-width: fit-content;
+    }
+}
+
+:root {
+    --color-gray-darker: #262626;
+    --color-gray-dark: #999;
+    --color-gray: #aaa;
+    --color-gray-light: #ccc;
+    --color-gray-lighter: #dbdbdb;
+    --color-white-bis: #fafafa;
+    --color-blue: #3897f0;
+}
+
+/* CSS Authentication */
+
+body {
+    background-color: #fafafa;
+    background-color: var(--color-white-bis);
+    font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #262626;
+    color: var(--color-gray-darker);
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.hero {
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    border: 1px solid var(--color-gray-lighter);
+    border-radius: 3px;
+    padding: 2rem;
+    width: 400px;
+}
+
+.hero .help-links {
+    margin-top: 2rem;
+    border-top: 1px solid #dbdbdb;
+    border-top: 1px solid var(--color-gray-lighter);
+    padding-top: 1rem;
+    text-align: center;
+}
+
+.hero .help-links a {
+    display: block;
+    margin-top: 0.25rem;
+    text-decoration: none;
+    color: #3897f0;
+    color: var(--color-blue);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.hover-button {
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.hover-button:hover {
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* CSS Form Authentication */
+
+form .field {
+    margin-top: 1rem;
+    margin-right: 25px;
+}
+
+form .field input {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #fafafa;
+    background-color: var(--color-white-bis);
+    border: 1px solid #dbdbdb;
+    border: 1px solid var(--color-gray-lighter);
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+form .field input:focus {
+    outline: 0;
+    border: 1px solid #262626;
+    border: 1px solid var(--color-gray-darker);
+}
+
+form .actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+form .actions input[type='submit'] {
+    font-size: 14px;
+    background-color: #3897f0;
+    background-color: var(--color-blue);
+    color: white;
+    width: 100%;
+    border-radius: 4px;
+    border: none;
+    padding: 0.5rem;
+}
+
+form.edit-profile {
+    margin: 1rem auto 0;
+    padding: 1rem;
+    max-width: 500px;
+    border-radius: 3px;
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    border: 1px solid var(--color-gray-lighter);
+}
+
+/*# sourceMappingURL=authentication-b8ee47ff.css.map*/
