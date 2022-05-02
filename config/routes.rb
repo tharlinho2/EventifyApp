@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   resources :events
   resources :reminders, only: %i[ create destroy ]
 
-  authenticate :user, ->(user) { user.admin? } do
-    mount Sidekiq::Web => "/sidekiq"
+  def draw(routes_name)
+    instance_eval(File.read(Rails.root.join("config/routes/#{routes_name}.rb")))
   end
+
+  draw :sidekiq
 end
