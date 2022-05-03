@@ -7,5 +7,5 @@ Sidekiq.configure_client do |config|
 end
 
 Mailgun.configure do |config|
-  config.api_key = "6c306dc281217674d4277d19164b74f8-fe066263-4181c85f"
+  config.api_key = ENV["MAILGUN_API_KEY"]
 end
