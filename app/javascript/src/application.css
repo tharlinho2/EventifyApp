@@ -163,9 +163,3 @@ form.new-reminder {
   height: 25px;
   width: 25px;
 }
-
-/* PWA  */
-
-#setup_button {
-  display: none;
-}
