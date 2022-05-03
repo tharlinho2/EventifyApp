@@ -8,7 +8,6 @@ class UserMailer < ApplicationMailer
   def reminder(reminder)
     @user = User.find(reminder.user_id)
     @event = Event.find(reminder.event_id)
-
     mail(to: @user.email, subject: "Lembrete")
   end
 

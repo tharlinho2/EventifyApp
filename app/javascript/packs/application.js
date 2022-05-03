@@ -12,6 +12,7 @@ import '../src/application.css'
 
 import './flashMessages.js'
 import '../service_workers/service-worker'
+import './buttonPwaInstall'
 
 window.addEventListener('load', () => {
   navigator.serviceWorker.register('/service-worker.js').then(registration => {
