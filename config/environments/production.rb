@@ -6,20 +6,11 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
-  # config.action_mailer.delivery_method = :mailgun
-  # config.action_mailer.mailgun_settings = {
-  #   api_key: ENV["MAILGUN_API_KEY"],
-  #   domain: ENV["MAILGUN_DOMAIN"],
-  # # api_host: 'api.eu.mailgun.net'  # Uncomment this line for EU region domains
-  # }
-
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: ENV["MAILGUN_SMTP_SERVER"],
-    user_name: ENV["MAILGUN_SMTP_LOGIN"],
-    password: ENV["MAILGUN_SMTP_PASSWORD"],
-    domain: "eventify-th-app.herokuapp.com/",
-    authentication: "plain",
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: ENV["MAILGUN_API_KEY"],
+    domain: ENV["MAILGUN_DOMAIN"],
+  # api_host: 'api.eu.mailgun.net'  # Uncomment this line for EU region domains
   }
 
   # Eager load code on boot. This eager loads most of Rails and
