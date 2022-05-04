@@ -6,12 +6,14 @@
     </p>
     <p>
         <strong>Descrição:</strong>
-        <%= truncate(@event.description, length: 40 ) %>
+        <%= truncate(@event.description, length: 30 ) %>
 
-        <%= link_to 'Ler tudo...', "#", { 
-        'class' => 'text-decoration-none fst-italic', 
-        'data-bs-toggle' => "modal", 
-        "data-bs-target" => "#modalDescription" } %>
+        <% if !@event.description.empty? && @event.description.length > 30 %>
+          <%= link_to 'Ler tudo...', "#", { 
+          'class' => 'text-decoration-none fst-italic', 
+          'data-bs-toggle' => "modal", 
+          "data-bs-target" => "#modalDescription" } %>
+        <% end %>
     </p>
     <p>
         <strong>Início:</strong>
