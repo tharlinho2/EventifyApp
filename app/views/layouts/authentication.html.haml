@@ -1,0 +1,19 @@
+!!!
+%html{:lang => "pt"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Autenticação - Eventify
+    %meta{:charset => "UTF-8"}/
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", :name => "viewport"}/
+    %meta{:content => "#317EFB", :name => "theme-color"}/
+    %link{:href => "/example.png", :rel => "apple-touch-icon"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_pack_tag 'authentication'
+    = javascript_pack_tag 'authentication'
+    %link{:href => "/manifest.json", :rel => "manifest"}/
+  %body{"data-flash-messages" => "#{JSON.dump(flash.to_a)}"}
+    %div
+      %main
+        %section.hero
+          = yield

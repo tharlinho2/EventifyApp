@@ -1,0 +1,10 @@
+%tr.border-top
+  %td
+    = index + 1
+  %td
+    %p{:class => "<haml_loud"}
+      reminder.reminder_at &lt; Time.now ? "text-decoration-line-through" : ""&gt;
+      \#{l reminder.reminder_at, format: :short2}
+  %td
+    = link_to reminder, method: :delete, data: { confirm: 'Tem certeza?' } do
+      = image_tag "delete.png", class: "image-delete"

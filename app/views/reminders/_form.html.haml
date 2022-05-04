@@ -1,0 +1,22 @@
+= form_with model: @reminder, local: true, class: "new-reminder" do |form|
+  = form.hidden_field :event_id, value: @event.id
+  = form.number_field :time_value, class: 'form-control mb-4', placeholder: "Valor", min: 1, max: 100
+  .form-check
+    = form.radio_button :time_unit, "MINUTE", class: "form-check-input"
+    = form.label :time_unit, "Minuto antes", class: "form-check-label"
+  .form-check
+    = form.radio_button :time_unit, "HOUR", class: "form-check-input"
+    = form.label :time_unit, "Hora", class: "form-check-label"
+  .form-check
+    = form.radio_button :time_unit, "DAY", class: "form-check-input"
+    = form.label :time_unit, "Dia", class: "form-check-label"
+  .form-check
+    = form.radio_button :time_unit, "WEEK", class: "form-check-input"
+    = form.label :time_unit, "Semana", class: "form-check-label"
+  - if @reminder.reminder_at?
+    .datetime-reminder
+      %p Lembrar em
+      %p= l @reminder.reminder_at, format: :short2
+  .modal-footer
+    %button.btn.btn-secondary.hover-button{"data-bs-dismiss" => "modal", :type => "button"} Cancelar
+    = form.submit "Criar Lembrete", class: "btn btn-primary hover-button", data: { disable_with: 'Salvando...' }

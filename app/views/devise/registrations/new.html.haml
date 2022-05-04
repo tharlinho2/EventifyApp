@@ -1,0 +1,11 @@
+%h2 Crie uma conta
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  .field
+    = f.email_field :email, autocomplete: "email", placeholder: "Email"
+  .field
+    = f.password_field :password, autocomplete: "new-password", placeholder: "Senha"
+  .field
+    = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Senha (confirmação)"
+  .actions
+    = f.submit "Cadastrar", class: "hover-button"
+= render "devise/shared/links"

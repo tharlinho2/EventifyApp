@@ -31,7 +31,9 @@ gem "sidekiq-scheduler"
 
 gem "sidekiq"
 
-gem 'mailgun-ruby', '~>1.2.5'
+gem "mailgun-ruby", "~>1.2.5"
+
+gem "haml-rails", "~> 2.0"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

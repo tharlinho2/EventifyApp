@@ -1,0 +1,57 @@
+.show-reminder
+  .show-event
+    %p
+      %strong Título:
+      = @event.title
+    %p
+      %strong Descrição:
+      = truncate(@event.description, length: 30 )
+      - if !@event.description.empty? && @event.description.length > 30
+        = link_to 'Ler tudo...', "#", {                 |
+          'class' => 'text-decoration-none fst-italic', |
+          'data-bs-toggle' => "modal",                  |
+          "data-bs-target" => "#modalDescription" }     |
+    %p
+      %strong Início:
+      = l @event.starts_at, format: :short2
+    %p
+      %strong Fim:
+      = l @event.ends_at, format: :short2
+  %aside
+    = link_to "#", {                                                   |
+      'data-bs-toggle' => @event.reminders.length == 5 ? "" : "modal", |
+      "data-bs-target" => "#staticBackdrop",                           |
+      "title" => "No máximo 5 lembretes"                               |
+      } do                                                             |
+      .button-new-reminder
+        = image_tag "lembrete.png"
+    %section.reminders{"data-post-id" => "#{@event.id}"}
+      %p.reminder-header Lembretes
+      - if @event.reminders.any?
+        %table.table.table-borderless
+          %thead
+            %tr
+              %th N°
+              %th Data de Lembrete
+          %tbody
+            - @event.reminders.order(reminder_at: :asc).each_with_index do |reminder, index|
+              = render reminder, index: index
+      - else
+        %div
+          %p Nenhum lembrete ainda!
+.links-event
+  = link_to 'Voltar', events_path, class: "btn btn-secondary hover-button"
+  = link_to 'Editar', edit_event_path(@event), class: "btn btn-primary ms-2 hover-button"
+/ Modal
+#staticBackdrop.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "staticBackdropLabel", "data-bs-backdrop" => "static", "data-bs-keyboard" => "false", :tabindex => "-1"}
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .modal-body
+        .new-reminder
+          = render "reminders/form"
+#modalDescription.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "staticBackdropLabel", "data-bs-keyboard" => "true", :tabindex => "-1"}
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .modal-body
+        .new-reminder
+          %p= @event.description

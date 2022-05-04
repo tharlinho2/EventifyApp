@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Eventify
+    %meta{:charset => "UTF-8"}/
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", :name => "viewport"}/
+    %meta{:content => "#317EFB", :name => "theme-color"}/
+    %link{:href => "/example.png", :rel => "apple-touch-icon"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_pack_tag 'application', media: 'all'
+    = javascript_pack_tag 'application'
+    %link{:href => "/manifest.json", :rel => "manifest"}/
+  %body{"data-flash-messages" => "#{JSON.dump(flash.to_a)}"}
+    = render 'layouts/topnavbar'
+    .d-flex.h-100.align-items-center.justify-content-center.row.bg-gradient-primary
+      %main.col-lg-8.shadow-lg.p-5.mb-5.bg-white
+        = yield
