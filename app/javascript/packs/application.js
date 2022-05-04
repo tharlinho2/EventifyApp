@@ -12,6 +12,8 @@ import '../src/application.css'
 
 import './flashMessages.js'
 import '../service_workers/service-worker'
+import '../service_workers/OneSignalSDKUpdaterWorker'
+import '../service_workers/OneSignalSDKWorker'
 
 window.addEventListener('load', () => {
   navigator.serviceWorker.register('/service-worker.js').then(registration => {
@@ -27,6 +29,13 @@ window.addEventListener('load', () => {
     console.log('Service worker registration failed: ', registrationError);
   });
 });
+
+window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "043788c0-ea4f-4e33-b40a-0aa532c7629a",
+    });
+  });
 
 Rails.start()
 ActiveStorage.start()

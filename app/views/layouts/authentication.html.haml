@@ -13,14 +13,6 @@
     = javascript_pack_tag 'authentication'
     %link{:href => "/manifest.json", :rel => "manifest"}/
   %body{"data-flash-messages" => "#{JSON.dump(flash.to_a)}"}
-    %script{:src => "https://cdn.onesignal.com/sdks/OneSignalSDK.js", :async => ""}
-    :javascript
-      window.OneSignal = window.OneSignal || [];
-      OneSignal.push(function () {
-          OneSignal.init({
-            appId: "043788c0-ea4f-4e33-b40a-0aa532c7629a",
-          });
-      });
     %div
       %main
         %section.hero
