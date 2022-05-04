@@ -8,6 +8,11 @@
     %meta{:content => "#317EFB", :name => "theme-color"}/
     %link{:href => "/example.png", :rel => "apple-touch-icon"}/
     %link{:href => "/manifest.json", :rel => "manifest"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_pack_tag 'application', media: 'all'
+    = javascript_pack_tag 'application'
+  %body{"data-flash-messages" => "#{JSON.dump(flash.to_a)}"}
     %script{:async => "", :src => "https://cdn.onesignal.com/sdks/OneSignalSDK.js"}
     :javascript
       window.OneSignal = window.OneSignal || [];
@@ -16,11 +21,6 @@
             appId: "043788c0-ea4f-4e33-b40a-0aa532c7629a",
           });
       });
-    = csrf_meta_tags
-    = csp_meta_tag
-    = stylesheet_pack_tag 'application', media: 'all'
-    = javascript_pack_tag 'application'
-  %body{"data-flash-messages" => "#{JSON.dump(flash.to_a)}"}
     = render 'layouts/topnavbar'
     .d-flex.h-100.align-items-center.justify-content-center.row.bg-gradient-primary
       %main.col-lg-8.shadow-lg.p-5.mb-5.bg-white
