@@ -7,10 +7,12 @@ class SendReminderJob < ApplicationJob
     # UserMailer.reminder(reminder).deliver_now
 
     reminder.user.notifications.each do |n|
+      txt = "#{reminder.event.title} \n \n#{reminder.event.description}"
+
       Webpush.payload_send(endpoint: n.endpoint,
         message: JSON.generate({ 
-          title: "Teste",
-          body: "Teste"
+          title: "Lembrete 🔔",
+          body: txt
           }),
         p256dh: n.p256dh_key,
         auth: n.auth_key,
@@ -18,8 +20,8 @@ class SendReminderJob < ApplicationJob
         urgency: 'normal',
         vapid: {
           subject: 'mailto:admin@commercialview.com.au',
-          public_key: "BACfNWl1UqWyyRHIw7wRbm0ZHyVYing85sBOVMzmy5rDIsp-OipzJ7iHG3TtU8-_n9bS2k2WezFmt9vAtC0x9Bo=",
-          private_key: "KIYVQ1X-WbI9ICPuNudM4L5vPX16wd1UrL6a7WHOnus="
+          public_key: ENV['VAPID_PUBLIC_KEY'],
+          private_key: ENV['VAPID_PRIVATE_KEY']
         })
     end
   end

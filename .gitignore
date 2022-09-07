@@ -35,6 +35,8 @@
 yarn-debug.log*
 .yarn-integrity
 
+/public/packs/js
+
 .vscode
 public/service-worker.js*
 public/icons

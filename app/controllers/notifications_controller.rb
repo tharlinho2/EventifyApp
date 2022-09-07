@@ -23,8 +23,8 @@ class NotificationsController < ApplicationController
             urgency: 'normal',
             vapid: {
                 subject: 'mailto:admin@commercialview.com.au',
-                public_key: "BACfNWl1UqWyyRHIw7wRbm0ZHyVYing85sBOVMzmy5rDIsp-OipzJ7iHG3TtU8-_n9bS2k2WezFmt9vAtC0x9Bo=",
-                private_key: "KIYVQ1X-WbI9ICPuNudM4L5vPX16wd1UrL6a7WHOnus="
+                public_key: ENV['VAPID_PUBLIC_KEY'],
+                private_key: ENV['VAPID_PRIVATE_KEY']
             }
         )
     end
