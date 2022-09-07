@@ -35,6 +35,9 @@ gem "mailgun-ruby", "~>1.2.5"
 
 gem "haml-rails", "~> 2.0"
 
+gem 'webpush'
+gem 'serviceworker-rails'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

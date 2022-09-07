@@ -9,7 +9,11 @@ production:
   - default
   - low
   - mailers
+  - webpush
 :schedule:
-  email_reminder:
-    cron: '0 * * * * *' # Runs once per minute
-    class: ReminderJob
+  # email_reminder:
+    # cron: '0 * * * * *' # Runs once per minute
+    # class: ReminderJob
+    notification_push:
+      cron: '0 * * * * *'
+      class: NotifcationPushJob

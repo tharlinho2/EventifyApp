@@ -8,4 +8,6 @@ class User < ApplicationRecord
   has_many :reminders
 
   enum status: [:common, :admin]
+
+  has_many :notifications
 end

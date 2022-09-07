@@ -1,45 +1,21 @@
-function urlB64ToUint8Array(base64String) {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding)
-    .replace(/\-/g, '+')
-    .replace(/_/g, '/');
-
-  const rawData = atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-
-  for (var i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  return outputArray;
-}
-
 self.addEventListener('install', function(event) {
   console.log('Service Worker installing.');
+  self.skipWaiting();
 });
 
-self.addEventListener('activate', async function(event) {
-  console.log('Service Worker activated.');
-  try {
-    const applicationServerKey = urlB64ToUint8Array('<YOUR_PUBLIC_KEY_HERE>')
-    const options = { applicationServerKey, userVisibleOnly: true }
-    const subscription = await self.registration.pushManager.subscribe(options)
-    console.log(JSON.stringify(subscription))
-  } catch (err) {
-    console.log('Error', err)
-  }
-});
-self.addEventListener('fetch', function(event) {
-  console.log('Service Worker fetching.');
-});
 self.addEventListener('push', function(event) {
-  console.log('[Service Worker] Push Received.');
-  console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+  self.skipWaiting();
+  // console.log('[Service Worker] Push Received.');
+  // console.log(`[Service Worker] Push had this data: ${event.data.json().body}`);
 
-  const title = 'A nice title';
+  const title = event.data.json().title || 'A nice ';
   const options = {
-    body: event.data.text(),
+    // body: event.data.json().body,
+    body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 150',
     icon: 'images/icon.png',
-    badge: 'images/badge.png'
+    badge: 'images/badge.png',
+    vibrate: [200, 100, 200, 100, 200, 100, 200],
+    tag: 'vibration-sample'
   };
 
   event.waitUntil(self.registration.showNotification(title, options));

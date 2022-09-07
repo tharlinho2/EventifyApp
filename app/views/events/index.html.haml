@@ -15,3 +15,13 @@
         = render 'table_row', event: event
 - else
   %p Nenhum evento cadastrado!
+
+%button.btn.btn-default#webpush-button{type: "button", onclick: "checkNotifs()"}
+  Send WebPush
+
+:javascript
+  
+  function sendKeys(subscription){
+    $.post("/notifications", { subscription: subscription});
+  }
+

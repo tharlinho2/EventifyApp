@@ -13,20 +13,7 @@ import '../src/application.css'
 import './flashMessages.js'
 import '../service_workers/service-worker'
 
-window.addEventListener('load', () => {
-  navigator.serviceWorker.register('/service-worker.js').then(registration => {
-    console.log('ServiceWorker registered: ', registration);
 
-    window.Notification.requestPermission().then(permission => {    
-      if(permission !== 'granted'){
-        throw new Error('Permission not granted for Notification');
-      }
-    });
-
-  }).catch(registrationError => {
-    console.log('Service worker registration failed: ', registrationError);
-  });
-});
 
 Rails.start()
 ActiveStorage.start()
