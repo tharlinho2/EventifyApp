@@ -19,7 +19,61 @@
     %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"}
     %script{:crossorigin => "anonymous", :integrity => "sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut", :src => "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"}
     %script{:crossorigin => "anonymous", :integrity => "sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k", :src => "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"}
+    
   %body{"data-flash-messages" => "#{JSON.dump(flash.to_a)}"}
+    - if current_user.present?
+      :ruby
+        vapidPublicKey = Base64.urlsafe_decode64(ENV['VAPID_PUBLIC_KEY']).bytes
+
+      :javascript
+
+        var vapidPublicKey = new Uint8Array(#{vapidPublicKey})
+
+        function checkNotifs(){
+          if(!("Notification" in window)) {
+                console.error("This browser does not support desktop notification");
+          }
+              
+          else if (Notification.permission === "granted") {
+            console.log("Permission to receive notifications has been granted");
+            getKeys();
+          }
+          
+          else if (Notification.permission !== 'denied') {
+            Notification.requestPermission(function (permission) {                    
+              if (permission === "granted") {
+                console.log("Permission to receive notifications has been granted");
+                getKeys();                                                       
+              } 
+            });
+          }
+        }
+
+        function getKeys(){
+          navigator.serviceWorker.register('/service-worker.js', {scope: "./"})
+            .then(function(registration) {
+              return registration.pushManager.getSubscription()
+                .then(function(subscription) {
+                  if (subscription) {
+                    return subscription;
+                  }
+                  return registration.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey: vapidPublicKey
+                  });
+                });
+            }).then(function(subscription) {
+              sendKeys(subscription.toJSON())
+            });
+        }
+
+        function sendKeys(subscription){
+          $.post("/registration", { subscription: subscription});
+        }
+
+        checkNotifs()
+
+
     = render 'layouts/topnavbar'
     .d-flex.h-100.align-items-center.justify-content-center.row.bg-gradient-primary
       %main.col-lg-8.shadow-lg.p-5.mb-5.bg-white

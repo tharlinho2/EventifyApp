@@ -1,17 +1,6 @@
 class NotificationsController < ApplicationController
 
     def create
-        Notification.create(endpoint: params[:subscription][:endpoint],
-                                p256dh_key: params[:subscription][:keys][:p256dh],
-                                auth_key: params[:subscription][:keys][:auth],
-                                user_id: current_user.id)
-        
-        @message = {
-            title: "title",
-            body: "body",
-            icon: "http://example.com/icon.pn"
-        }
-        
         Webpush.payload_send(endpoint: params[:subscription][:endpoint],
             message: JSON.generate({ 
                 title: "Teste",
@@ -19,7 +8,6 @@ class NotificationsController < ApplicationController
             }),
             p256dh: params[:subscription][:keys][:p256dh],
             auth: params[:subscription][:keys][:auth],
-            ttl: 24 * 60 * 60,
             urgency: 'normal',
             vapid: {
                 subject: 'mailto:admin@commercialview.com.au',
@@ -27,5 +15,60 @@ class NotificationsController < ApplicationController
                 private_key: ENV['VAPID_PRIVATE_KEY']
             }
         )
+    end
+
+    def registration
+        # def exist_regist_user
+        #     regist = Notification.where(endpoint: params[:subscription][:endpoint])
+
+        #     regist = Notification.where(endpoint: params[:subscription][:endpoint])
+
+        #     regist = Notification.where(endpoint: params[:subscription][:endpoint])
+        # end
+
+        
+
+        # Notification.create(endpoint: params[:subscription][:endpoint],
+        #     p256dh_key: params[:subscription][:keys][:p256dh],
+        #     auth_key: params[:subscription][:keys][:auth],
+        #     user_id: current_user.id)
+
+        exist_regist_browser
+    end
+
+    private
+
+    def exist_regist_browser
+        regist = Notification.where(endpoint: params[:subscription][:endpoint])
+
+        regist = Notification.where(p256dh_key: params[:subscription][:keys][:p256dh])
+        
+        regist = Notification.where(auth_key: params[:subscription][:keys][:auth])
+
+        if regist.present?
+            exist_outro = false
+
+            regist.each do |r|
+                if r.user_id != current_user.id
+                    exist_outro = true
+                    break
+                end
+            end
+
+            if exist_outro
+                regist.destroy_all
+
+                new_notification
+            end
+        else
+            new_notification
+        end
+    end
+
+    def new_notification
+        Notification.create(endpoint: params[:subscription][:endpoint],
+            p256dh_key: params[:subscription][:keys][:p256dh],
+            auth_key: params[:subscription][:keys][:auth],
+            user_id: current_user.id)
     end
 end  

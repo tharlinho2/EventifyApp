@@ -4,21 +4,18 @@ Rails.application.routes.draw do
   root "events#index"
 
   devise_for :users,
-             only: %i[ sessions registrations passwords ],
-             controllers: {
-               registrations: "users/registrations",
-               passwords: "users/passwords",
-               confirmations: "users/confirmations",
-             }
+            only: %i[ sessions registrations passwords ],
+            controllers: {
+              registrations: "users/registrations",
+              passwords: "users/passwords",
+              confirmations: "users/confirmations",
+            }
 
   resources :events
   resources :reminders, only: %i[ create destroy ]
-
-  namespace :notification, notification_scope: true do
-    post "/sendPush" => "content#sendPush", :as => :sendPush
-  end
   
   post "/notifications" => "notifications#create", :as => :create
+  post "/registration" => "notifications#registration"
 
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
     ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_USERNAME"])) &

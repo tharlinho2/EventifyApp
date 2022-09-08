@@ -16,8 +16,6 @@ class SendReminderJob < ApplicationJob
           }),
         p256dh: n.p256dh_key,
         auth: n.auth_key,
-        ttl: 24 * 60 * 60,
-        urgency: 'normal',
         vapid: {
           subject: 'mailto:admin@commercialview.com.au',
           public_key: ENV['VAPID_PUBLIC_KEY'],
